@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
-//#include<unistd.h>
+
 //deklarasi variable global
 int pil,jmlhmkn;
 char temp[100];
+
 //deklarasi tipe bentukan
 typedef struct 
 {
@@ -31,6 +31,7 @@ void tampilmenu(){
 	for(i=0;i<12;i++){
 		printf("%d.\t|%s\t|%d\t|%d porsi\n",i+1,menu[i],harga[i],stok[i]);
 	}
+	printf("\n");
 }
 
 void menuutama(){
@@ -46,6 +47,7 @@ void menuutama(){
 }
 
 void tambahstok(){
+	system("cls");
 	int p,q;
 	tampilmenu();
 	printf("Masukan ID Makanan = ");
@@ -55,8 +57,6 @@ void tambahstok(){
 	stok[p-1] = stok[p-1]+q;
 	system("cls");
 	tampilmenu();
-	printf("press any key to continue...\n\n");
-	getch();
 }
 
 void tampilstruk(){
@@ -77,7 +77,7 @@ void tampilstruk(){
 		}else{
 			printf("Uang = %d\n",uang);
 			printf("Kembalian = %d\n",kemb);
-			printf("Terima Kasih sudah makan di warteg kami");
+			printf("Terima Kasih sudah makan di warteg kami\n\n");
 		}
 	}while(kemb<0);
 }
@@ -102,18 +102,18 @@ void transaksi(){
 			str[i].jml = n;
 			str[i].tot = harga[m]*n;
 			stok[m] = stok[m]-n;
+			printf("Data terinput berupa :\n");
+			printf("%d %s x %d = %d\n\n",str[i].jml,str[i].nama,str[i].harga,str[i].tot);
 			i++;
-			printf("Data terinput!\n\n");
-			printf("%s -- %d -- %d -- %d\n\n",str[i].nama,str[i].harga,str[i].jml,str[i].tot);
+			jmlhmkn++;
 		}
 		printf("Input Lagi?(1/0)");
 		scanf("%d",&l);
-		jmlhmkn++;
 	}while(l==1);
 	tampilstruk();
 }
-//fungsi
 
+//fungsi
 int totalharga(){
 	int i,sum;
 	sum = 0;
@@ -141,9 +141,10 @@ main(){
 				break;
 			case 2 :
 				transaksi();
-				getch();
+				printf("Kembali ke menu utama? (1/0)");
+				scanf("%d",&k);
 				break;
+			default : printf("Keluar..."); k = 0;
 		}
-		
 	}while(k == 1);
 }
