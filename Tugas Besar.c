@@ -3,7 +3,6 @@
 
 //deklarasi variable global
 int pil,jmlhmkn;
-char temp[100];
 
 //deklarasi tipe bentukan
 typedef struct 
